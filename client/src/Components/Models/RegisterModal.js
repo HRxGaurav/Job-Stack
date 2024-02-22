@@ -74,6 +74,8 @@ function RegisterModal({ closeModalState }) {
                     Cookies.set('token', data.token, { expires: 7 });
                     Cookies.set('username', data.username, { expires: 7 });
                     Cookies.set('id', data.id, { expires: 7 });
+                    Cookies.set('usertype', data.userType, { expires: 7 });
+                    console.log(data);
                     
                 } else {
                     // OTP verification failed

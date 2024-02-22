@@ -1,11 +1,14 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState, useContext} from 'react'
 import Navbar from '../Components/Navbar';
 import jobData from '../Components/jobdata';
 import JobCards from '../Components/JobCards';
+import LogContext from '../Utilities/LogContext';
+import '../App.css'
 
 const Homepage = () => {
 
   const [jobs, setJobs] = useState([]);
+  const [logged, setLogged] = useContext(LogContext);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -30,7 +33,9 @@ const Homepage = () => {
   return (
     <>
       <Navbar />
-      {jobs.map((val) => {
+
+
+      { logged && jobs.map((val) => {
         return (
           <JobCards
             key={val._id}
@@ -46,6 +51,10 @@ const Homepage = () => {
           />
         );
       })}
+
+
+
+      {!logged && <div className='loginfirst'>Log In First</div>}
     </>
   )
 }

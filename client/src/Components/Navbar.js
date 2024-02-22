@@ -8,21 +8,25 @@ import LogContext from '../Utilities/LogContext';
 import RegisterModal from './Models/RegisterModal';
 import CoinContext from '../Utilities/CoinContext';
 import AppliedContext from '../Utilities/AppliedContext';
+import Loader from './Models/Loader';
 
 const Navbar = () => {
     const navigate = useNavigate();
 
     const [coinBalance, setCoinBalance] = useContext(CoinContext);
+    const [userType, setUserType] = useState();
     const [appliedJobIds, setAppliedJobIds] = useContext(AppliedContext);
     const [name, setName] = useState("");
     const [logged, setLogged] = useContext(LogContext);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [loadingState,setLoadingState]= useState(true);
 
     const logout = () => {
         setLogged(false);
         Cookies.remove('token');
         Cookies.remove('username');
         Cookies.remove('id');
+        Cookies.remove('type')
         navigate('/')
     }
 
@@ -37,7 +41,8 @@ const Navbar = () => {
     
                 if (userLoggedIn === 200) {
                     // Fetch user profile data
-                    const response = await fetch(`${process.env.REACT_APP_BACKEND}/get_profile`, {
+                    setLoadingState(false)
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND}/user`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -46,25 +51,25 @@ const Navbar = () => {
                     });
     
                     if (response.ok) {
+                        setLoadingState(false)
                         const data = await response.json();
                         // Update the user's coin balance
-                        setCoinBalance(data.profile.totalCoins);
-                        
-                        // Check if appliedJobIds has changed before updating the state
-                        if (JSON.stringify(data.profile.appliedJobs) !== JSON.stringify(appliedJobIds)) {
-                            setAppliedJobIds(data.profile.appliedJobs);
-                        }
+                        setCoinBalance(data.user.totalCoins);
+                        setUserType(data.user.userType==='company')
+
                     } else {
+                        setLoadingState(false)
                         console.error('Failed to fetch user profile data');
                     }
                 }
             } catch (error) {
+                setLoadingState(false)
                 console.error('Error checking user login status:', error);
             }
         };
     
         checkLoggedIn();
-    }, [appliedJobIds]); // Only run the effect if appliedJobIds changes
+    }, [appliedJobIds]); 
     
 
     return (
@@ -74,20 +79,22 @@ const Navbar = () => {
                 <div className={style.buttons}>
                     {!logged && <button className={style.login_button}><NavLink className={style.navlink_button1} onClick={() => { setShowRegisterModal(!showRegisterModal) }} >Login/Register</NavLink></button>}
                     {logged && <>
-                        <h1 className={style.nav_text}>Coins</h1>
+                        <h1 className={style.nav_text1}>Coins</h1>
                         <img className={style.coin_icon} src="https://cuvette.tech/app/static/media/coin.ba15d1e4.svg" alt='coin-icon' />
-                        <h1 className={style.nav_text}>{coinBalance}</h1>
+                        <h1 className={style.nav_text1}>{coinBalance}</h1>
                     </>}
                     {logged && <h1 className={style.nav_text} style={{ cursor: 'pointer' }} onClick={() => { navigate('/transaction_history') }}>Transaction History</h1>}
-                    {logged && <h1 className={style.nav_text} style={{ cursor: 'pointer' }} onClick={() => { navigate('/job_post') }}>Job Post</h1>}
+                    {(logged && userType ) &&  <h1 className={style.nav_text} style={{ cursor: 'pointer' }} onClick={() => { navigate('/job_post') }}>Job Post</h1>}
+                    {(logged && userType ) &&  <h1 className={style.nav_text} style={{ cursor: 'pointer' }} onClick={() => { navigate('/create_profile') }} >Profile</h1>}
                     {logged && <h1 className={style.nav_text} style={{ cursor: 'pointer' }} onClick={logout}>Logout</h1>}
-                    {logged && <img className={style.user_icon} src={userIcon} onClick={() => { navigate('/create_profile') }}  alt='user-icon'></img>}
+                    {/* {logged && <img className={style.user_icon} src={userIcon} onClick={() => { navigate('/create_profile') }}  alt='user-icon'></img>} */}
 
 
                 </div>
             </nav>
 
             {showRegisterModal && <RegisterModal closeModalState={setShowRegisterModal} />}
+            {loadingState && <Loader/>}
         </>
     )
 }

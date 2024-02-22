@@ -1,5 +1,5 @@
 import express from "express";
-import { addCompanyDetails, postJob,getAllJobs,applyJob, getTransactionHistory } from "../controllers/companyController.js";
+import { addCompanyDetails, postJob,getAllJobs,applyJob, getTransactionHistory, getUserById } from "../controllers/companyController.js";
 import checkAuthUser from "../middlewares/auth-middleware.js";
 
 const router = express.Router();
@@ -11,6 +11,7 @@ router.get('/jobs', getAllJobs);
 router.post('/apply', applyJob);
 router.post('/apply', applyJob);
 router.get('/transaction_history', getTransactionHistory);
+router.get('/user', getUserById);
 
 
 

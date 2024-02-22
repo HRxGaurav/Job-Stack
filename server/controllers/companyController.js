@@ -310,6 +310,27 @@ const getTransactionHistory = async (req, res) => {
     }
 };
 
+const getUserById = async (req, res) => {
+    const token = req.header('Authorization');
+    if (!token) {
+        return res.status(401).json({ message: 'Authorization token missing' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        const userId = decoded.userID;
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        return res.status(200).json({ user });
+    } catch (error) {
+        console.error('Error fetching user by ID:', error);
+        return res.status(500).json({ message: 'Error fetching user by ID' });
+    }
+};
 
 
-export { addCompanyDetails, postJob, getAllJobs,applyJob, getTransactionHistory };
+
+export { addCompanyDetails, postJob, getAllJobs,applyJob, getTransactionHistory, getUserById };

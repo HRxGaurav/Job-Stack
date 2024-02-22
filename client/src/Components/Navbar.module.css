@@ -53,6 +53,15 @@
     background-color: transparent;
     color: white;
     margin: auto 10px;
+    border: 1px solid white ;
+    border-radius: 5px;
+    padding: 5px;
+}
+.nav_text1{
+    background-color: transparent;
+    color: white;
+    margin: auto 10px;
+   
 }
 
 .buttons{

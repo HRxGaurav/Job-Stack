@@ -92,7 +92,7 @@ const verifyOTP = async (req, res) => {
           const token = jwt.sign({ userID: user._id}, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });
           
           // Send token in response
-          return res.status(200).json({ message: 'OTP is valid', token, username: email.split('@')[0], id: user._id });
+          return res.status(200).json({ message: 'OTP is valid', token, username: email.split('@')[0], id: user._id, userType:user.userType });
       } else {
           return res.status(401).json({ message: 'Invalid OTP' });
       }
