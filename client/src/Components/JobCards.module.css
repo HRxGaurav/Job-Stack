@@ -1,0 +1,171 @@
+.card_main {
+    width: 1097px;
+    flex-shrink: 0;
+    background: #fff;
+    box-shadow: 0px 0px 22px 4px rgba(255, 32, 32, 0.25);
+    margin: 23px auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 21px;
+
+}
+
+.card_left{
+    display: flex;
+}
+
+.card_right{
+    width: 55%
+}
+
+
+
+.company_logo {
+    height: 55px;
+    width: 55px;
+    border-radius: 12.573px;
+    margin: 3px 6px;
+    margin-right: 26px;
+}
+
+
+.job_position {
+    color: #000;
+    font-family: Roboto;
+    font-size: 19.494px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 89.188%;
+    margin-bottom: 10px;
+
+}
+
+.job_feed {
+    display: flex;
+}
+
+.employeelogo {
+    width: 20.393px;
+    height: 14.832px;
+    flex-shrink: 0;
+    margin-right: 8px;
+}
+
+.employeeCount {
+    color: #9C9C9C;
+    font-family: Roboto;
+    font-size: 18.381px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 89.188%;
+    margin-right: 27px;
+}
+
+.jobPay {
+    color: #9C9C9C;
+    font-size: 18.381px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 89.188%;
+}
+
+
+.job_types {
+    display: flex;
+    margin-top: 11px;
+}
+
+.job_type {
+    color: #ED5353;
+    font-family: Roboto;
+    font-size: 15.099px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 89.188%;
+    margin-right: 22px;
+}
+
+
+.job_skill,
+.job_details {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.job_skill{
+    flex-wrap: wrap;
+}
+
+.job-details {
+    display: flex;
+    margin-top: 20px;
+
+}
+
+.job_skills {
+    border-radius: 1.433px;
+    background: #FEE;
+    min-width: 95.321px;
+    min-height: 32.968px;
+    color: #000;
+    text-align: center;
+    align-items: center;
+    font-family: DM Sans;
+    font-size: 15.942px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 144.023%;
+    margin-left: 15px;
+    padding: 5px 10px;
+    margin-bottom: 8px;
+
+} 
+
+
+
+.edit_job {
+    width: 154px;
+    height: 36.497px;
+    flex-shrink: 0;
+    border-radius: 3.922px;
+    border: 2px solid #ED5353;
+    color: #ED5353;
+    text-align: center;
+    font-family: DM Sans;
+    font-size: 19.612px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 144.023%;
+    background-color: #fff;
+}
+
+.view_job {
+    border-radius: 3.922px;
+    background: #ED5353;
+    height: 36.497px;
+    color: #fff;
+    text-align: center;
+    font-family: DM Sans;
+    font-size: 19.612px;
+    font-style: normal;
+    font-weight: 500;
+    border-style: none;
+    margin-left: 16px;
+    cursor: pointer;
+}
+.view_job_applied{
+    border-radius: 3.922px;
+    background: #9f7575;
+    height: 36.497px;
+    color: #fff;
+    text-align: center;
+    font-family: DM Sans;
+    font-size: 19.612px;
+    font-style: normal;
+    font-weight: 500;
+    border-style: none;
+    margin-left: 16px;
+    cursor: not-allowed;
+    
+}

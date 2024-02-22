@@ -1,0 +1,60 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('../Assets/Images/Navbar.png');
+    background-size: cover;
+    background-position: center;
+    height: 70px;
+    border-radius: 0 0 30px 30px;
+    padding: 0 70px;
+}
+
+.logo {
+    font-size: 1.7rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: #fff;
+}
+
+.login_button {
+    border-radius: 7px;
+    border: 3px solid #fff;
+    background: transparent;
+    padding: 5px 12px;
+    color: #fff;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.navlink_button1{
+    text-decoration: none;
+    background: transparent;
+    color: #fff;
+}
+
+.user_icon{
+    height: 50px;
+    width: 50px;
+    background-color: transparent;
+    
+}
+
+.coin_icon{
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    margin-top: 10px;
+}
+
+.nav_text{
+    background-color: transparent;
+    color: white;
+    margin: auto 10px;
+}
+
+.buttons{
+    display: flex;
+}
