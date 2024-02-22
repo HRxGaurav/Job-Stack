@@ -71,7 +71,7 @@ const applyJob = async (req, res) => {
       await user.save();
       return res.status(200).json({ message: "Applied successfully" });
     } else {
-      //insufficient coins
+      
       return res
         .status(400)
         .json({ message: "Oops! You don't have sufficient balance" });

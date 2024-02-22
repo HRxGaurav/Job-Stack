@@ -53,7 +53,6 @@ const Navbar = () => {
                     if (response.ok) {
                         setLoadingState(false)
                         const data = await response.json();
-                        // Update the user's coin balance
                         setCoinBalance(data.user.totalCoins);
                         setUserType(data.user.userType==='company')
 
@@ -69,7 +68,8 @@ const Navbar = () => {
         };
     
         checkLoggedIn();
-    }, [appliedJobIds]); 
+        setLoadingState(false)
+    }, []); 
     
 
     return (

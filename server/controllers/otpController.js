@@ -8,7 +8,7 @@ dotenv.config();
 const ServiceEmail = process.env.ServiceEmail;
 const ServiceEmailPassword = process.env.ServiceEmailPassword;
 
-// Create a transporter using Gmail SMTP
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -17,12 +17,12 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Function to generate a random 4-digit OTP
+
 const generateOTP = () => {
     return Math.floor(1000 + Math.random() * 9000);
 };
 
-// Function to send OTP via email
+
 const sendOTP = async (req, res) => {
     const { email, userType } = req.body;
 
@@ -56,7 +56,7 @@ const sendOTP = async (req, res) => {
                 
             });
 
-            // Credit coins based on userType
+            
             if (userType === 'company') {
                 user.totalCoins = 200;
             } else if (userType === 'student') {
@@ -72,7 +72,7 @@ const sendOTP = async (req, res) => {
     }
 };
 
-// Function to verify OTP
+
 const verifyOTP = async (req, res) => {
   const { email, otp } = req.body;
   console.log("otp", otp);
@@ -84,14 +84,13 @@ const verifyOTP = async (req, res) => {
       }
 
       if (otp == user.lastOtp && otp > -1) {
-          // Update the last OTP to mark it as used
           user.lastOtp = -1111;
           await user.save();
           
-          // Generate JWT token
+        
           const token = jwt.sign({ userID: user._id}, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });
           
-          // Send token in response
+         
           return res.status(200).json({ message: 'OTP is valid', token, username: email.split('@')[0], id: user._id, userType:user.userType });
       } else {
           return res.status(401).json({ message: 'Invalid OTP' });
