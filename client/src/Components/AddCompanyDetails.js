@@ -13,35 +13,39 @@ const AddCompanyDetails = () => {
         method: 'POST',
         headers: {
           'Authorization': `${Cookies.get('token')}`,
-          'Content-Type': 'application/json' // Specify JSON content type
+          'Content-Type': 'application/json' 
         },
-        body: JSON.stringify(requestData) // Convert body to JSON
+        body: JSON.stringify(requestData) 
       });
 
       if (response.ok) {
         console.log('Company details added successfully');
-        // Handle success, such as redirecting the user or showing a success message
       } else {
         console.error('Failed to add company details:', response.status);
-        // Handle other response statuses, such as showing an error message to the user
       }
     } catch (error) {
       console.error('Error adding company details:', error);
-      // Handle error, such as showing an error message to the user
     }
   };
 
   return (
-    <div>
+    <>
+    <br/><br/><br/><br/><br/>
+    
+    <div className="add-company-details-container">
       <h2>Add Company Details</h2>
-      <label htmlFor="companyName">Company Name:</label>
-      <input type="text" id="companyName" name="companyName" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
-      <br />
-      <label htmlFor="logoLink">Logo Link:</label>
-      <input type="text" id="logoLink" name="logoLink" value={logoLink} onChange={(e) => setLogoLink(e.target.value)} />
-      <br />
-      <button onClick={handleSubmit}>Submit</button>
-    </div>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="companyName">Company Name:</label>
+          <input type="text" id="companyName" name="companyName" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="logoLink">Logo Link:</label>
+          <input type="text" id="logoLink" name="logoLink" value={logoLink} onChange={(e) => setLogoLink(e.target.value)} />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div></>
   );
 };
 

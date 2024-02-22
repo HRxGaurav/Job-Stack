@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
+
 const TransactionHistory = () => {
   const [transactionHistory, setTransactionHistory] = useState([]);
   const token = Cookies.get('token');
@@ -22,7 +23,6 @@ const TransactionHistory = () => {
         setTransactionHistory(data.transactionHistory);
       } catch (error) {
         console.error('Error fetching transaction history:', error);
-        // Handle error, such as displaying an error message to the user
       }
     };
 
@@ -30,9 +30,9 @@ const TransactionHistory = () => {
   }, [token]);
 
   return (
-    <div>
+    <div className="transaction-history-container">
       <h2>Transaction History</h2>
-      <table>
+      <table className="transaction-history-table">
         <thead>
           <tr>
             <th>Date</th>

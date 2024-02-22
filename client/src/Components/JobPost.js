@@ -29,34 +29,44 @@ const JobPost = () => {
 
       if (response.ok) {
         console.log('Job posted successfully');
-        // Handle success, such as redirecting the user or showing a success message
       } else {
         console.error('Failed to post job:', response.status);
-        // Handle other response statuses, such as showing an error message to the user
       }
     } catch (error) {
       console.error('Error posting job:', error);
-      // Handle error, such as showing an error message to the user
     }
   };
 
   return (
-    <div>
+    <>
+    
+    <br/>
+    <br/>
+    <br/>
+    <div className="job-post-container">
+    
       <h2>Post a Job</h2>
-      <label htmlFor="role">Role:</label>
-      <input type="text" id="role" value={role} onChange={(e) => setRole(e.target.value)} />
-      <br />
-      <label htmlFor="minCTC">Minimum CTC:</label>
-      <input type="text" id="minCTC" value={minCTC} onChange={(e) => setMinCTC(e.target.value)} />
-      <br />
-      <label htmlFor="maxCTC">Maximum CTC:</label>
-      <input type="text" id="maxCTC" value={maxCTC} onChange={(e) => setMaxCTC(e.target.value)} />
-      <br />
-      <label htmlFor="location">Location:</label>
-      <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
-      <br />
-      <button onClick={handleSubmit}>Post Job</button>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="role">Role:</label>
+          <input type="text" id="role" value={role} onChange={(e) => setRole(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="minCTC">Minimum CTC:</label>
+          <input type="text" id="minCTC" value={minCTC} onChange={(e) => setMinCTC(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="maxCTC">Maximum CTC:</label>
+          <input type="text" id="maxCTC" value={maxCTC} onChange={(e) => setMaxCTC(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="location">Location:</label>
+          <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
+        </div>
+        <button type="submit">Post Job</button>
+      </form>
     </div>
+    </>
   );
 }
 
