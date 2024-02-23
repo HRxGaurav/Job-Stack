@@ -9,7 +9,9 @@ const AddCompanyDetails = () => {
   const [logoLink, setLogoLink] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+  
+    event.preventDefault();
     const requestData = { companyName, logoLink };
 
     try {
@@ -27,6 +29,7 @@ const AddCompanyDetails = () => {
         console.log('Company details added successfully');
         navigate('/')
       } else {
+        toast.error('Failed to add company details:', response.status)
         console.error('Failed to add company details:', response.status);
       }
     } catch (error) {

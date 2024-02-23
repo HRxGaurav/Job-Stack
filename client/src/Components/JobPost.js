@@ -37,6 +37,7 @@ const JobPost = () => {
         navigate('/')
 
       } else {
+        toast.error('Failed to post job:', response.status)
         console.error('Failed to post job:', response.status);
       }
     } catch (error) {
