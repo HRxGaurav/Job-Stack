@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import toast from 'react-hot-toast';
 
 const JobPost = () => {
   const [role, setRole] = useState('');
   const [minCTC, setMinCTC] = useState('');
   const [maxCTC, setMaxCTC] = useState('');
   const [location, setLocation] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +32,10 @@ const JobPost = () => {
       });
 
       if (response.ok) {
+        toast.success('Job posted successfully')
         console.log('Job posted successfully');
+        navigate('/')
+
       } else {
         console.error('Failed to post job:', response.status);
       }

@@ -69,7 +69,7 @@ const Navbar = () => {
     
         checkLoggedIn();
         setLoadingState(false)
-    }, []); 
+    }, [logged]); 
     
 
     return (

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import toast from 'react-hot-toast';
+
 
 const AddCompanyDetails = () => {
   const [companyName, setCompanyName] = useState('');
   const [logoLink, setLogoLink] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     const requestData = { companyName, logoLink };
@@ -19,7 +23,9 @@ const AddCompanyDetails = () => {
       });
 
       if (response.ok) {
+        toast.success('Company details added successfully')
         console.log('Company details added successfully');
+        navigate('/')
       } else {
         console.error('Failed to add company details:', response.status);
       }
